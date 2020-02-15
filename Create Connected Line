@@ -1,0 +1,20 @@
+import cv2
+import numpy as np
+
+def call_back(events,x,y,flags,params):
+    
+    if events ==cv2.EVENT_LBUTTONDOWN:
+        cv2.circle(image,(x,y),5,(0,255,0),-1)
+        points.append((x,y))
+        if len(points)>=2:
+            cv2.line(image,points[-1],points[-2],color=(0,255,0),thickness=2)
+            cv2.imshow("image",image)
+            
+image=np.zeros((512,512,3))
+cv2.imshow("image",image)
+points=[]
+
+cv2.setMouseCallback("image",call_back)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
